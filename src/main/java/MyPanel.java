@@ -33,12 +33,13 @@ public class MyPanel extends JPanel{
 
 			for (int i = 0; i < n; i++) {
 					g2d.setColor(c[i]);
+					
 				//g2d.drawLine(point[i].getX(), point[i].getY(), point[i].getX(), point[i].getY());
-				//g2d.drawLine(line[i].getX(), line[i].getY(), line[i].getX1(), line[i].getY1());
+				g2d.drawLine(line[i].getX(), line[i].getY(), line[i].getX1(), line[i].getY1());
 //                g2d.drawLine(triangles[i].getX(), triangles[i].getY(), triangles[i].getX1(), triangles[i].getY1());
 //                g2d.drawLine(triangles[i].getX1(), triangles[i].getY1(), triangles[i].getX2(), triangles[i].getY2());
-                g2d.drawPolygon(new int[] {triangles[i].getX(), triangles[i].getX1(), triangles[i].getX2()},
-                        new int[] {triangles[i].getY(), triangles[i].getY1(), triangles[i].getY2()}, 3);
+//                g2d.drawPolygon(new int[] {triangles[i].getX(), triangles[i].getX1(), triangles[i].getX2()},
+//                        new int[] {triangles[i].getY(), triangles[i].getY1(), triangles[i].getY2()}, 3);
 
 			}		
 			bc = false;

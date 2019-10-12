@@ -1,8 +1,10 @@
 import java.awt.*;
 import java.util.Random;
+import java.util.Scanner;
 import javax.swing.*;
 
 public class Window extends JFrame {
+
 	private tPoint[] point;
 	private MyLine[] line;
 	private MyTriangle[] triangles;
@@ -34,11 +36,19 @@ public class Window extends JFrame {
 	}
 
 	private void MoveIt() {
+//        Scanner scanner = new Scanner(System.in);
+//        int c = scanner.nextInt();
+//
+//        System.out.println("\tMain menu: ");
+//        System.out.println("1. Points");
+//        System.out.println("2. Lines");
+
 		while (true) {
+
 			for (int i = 0; i < n; i++)
 			//	point[i].MovePramX();
-//				line[i].MovePramX();
-			    triangles[i].MoveHaot();
+				line[i].OnCircle();
+//			    triangles[i].MoveHaot();
 			try {
 				Thread.sleep(10);
 			} catch (Exception exc) {

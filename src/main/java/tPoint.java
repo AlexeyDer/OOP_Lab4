@@ -148,8 +148,8 @@ public class tPoint {
             x2 = x - 20;
             y2 = y + 100;
 		//	point[i] = new tPoint(x, y);
-//			line[i] = new MyLine(x, y, x1, y);
-			triangles[i] = new MyTriangle(x, y, x1, y1, x2, y2);
+			line[i] = new MyLine(x, y, x1, y);
+//			triangles[i] = new MyTriangle(x, y, x1, y1, x2, y2);
 
 		}
 
