@@ -1,12 +1,44 @@
 public class MyTriangle extends MyLine {
-    private int x2, y2;
+    private double x0, y0;
+    private double x2, y2;
     private boolean bx = true, by = true;
+    private double dx2, dy2;
+    private double a = Math.toRadians(0.1);
   //  private int count_x, count_y;
 
     protected MyTriangle(int x, int y, int x1, int y1, int x2, int y2) {
         super(x, y, x1, y1);
         this.x2 = x2;
         this.y2 = y2;
+
+        setX0((getX() + getX1() + getX2()) / 3);
+        setY0((getY() + getY1() + getY2()) / 3);
+
+        setDx(getX() - getX0());
+        setDy(getY() - getY0());
+
+        setDx1(getX1() - getX0());
+        setDy1( getY1() - getY0());
+
+        setDx2(getX2() - getX0());
+        setDy2(getY2() - getY0());
+
+    }
+
+
+    public void OnCircle() throws InterruptedException {
+
+        double cosA = Math.cos(a), sinA = Math.sin(a);
+
+        setX((getDx() * cosA + getDy() * sinA + getX0()));
+        setX1((getDx1() * cosA + getDy1() * sinA + getX0()));
+        setX2((getDx2() * cosA + getDy2() * sinA + getX0()));
+
+        setY((getDy() * cosA - getDx() * sinA + getY0()));
+        setY1((getDy1() * cosA - getDx1() * sinA + getY0()));
+        setY2((getDy2() * cosA - getDx2() * sinA + getY0()));
+        a += Math.toRadians(1);
+
     }
 
     public void MovePramX() {
@@ -117,19 +149,46 @@ public class MyTriangle extends MyLine {
 
     }
 
-    public int getX2() {
+
+
+    public double getDx2() {
+        return dx2;
+    }
+
+    public double getDy2() {
+        return dy2;
+    }
+
+    public void setDx2(double dx2) {
+        this.dx2 = dx2;
+    }
+
+    public void setDy2(double dy2) {
+        this.dy2 = dy2;
+    }
+
+    //    public int getR1x2() {
+//        return R1x2;
+//    }
+//
+//    public int getR1y2() {
+//        return R1y2;
+//    }
+
+
+    public double getX2() {
         return x2;
     }
 
-    public int getY2() {
+    public double getY2() {
         return y2;
     }
 
-    public void setX2(int x2) {
+    public void setX2(double x2) {
         this.x2 = x2;
     }
 
-    public void setY2(int y2) {
+    public void setY2(double y2) {
         this.y2 = y2;
     }
 }
