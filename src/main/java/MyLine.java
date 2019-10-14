@@ -1,14 +1,28 @@
 public class MyLine extends tPoint {
-    private int x0, y0;
-    private int x1, y1;
-    private int R1x, R1y;
+    private double x0, y0;
+    private double x1, y1;
+    private double dx, dy;
+    private double dx1, dy1;
+
+
+    private int newX, newX1, newY, newY1;
 
     private boolean bx = true, by = true;
 
-    protected MyLine(int x, int y, int x1, int y1){
+    protected MyLine(double x, double y, double x1, double y1){
         super(x, y);
         this.x1 = x1;
         this.y1 = y1;
+
+        setX0((getX() + getX1()) / 2);
+        setY0((getY() + getY1()) / 2);
+
+        this.dx = getX() - getX0();
+        this.dy = getY() - getY0();
+
+        this.dx1 = getX1() - getX0();
+        this.dy1 = getY1() - getY0();
+
     }
 
 
@@ -29,69 +43,80 @@ public class MyLine extends tPoint {
         }
     }
 
-    public void OnCircle() {
-//        if (x1 == x2 || y1 == y2) {
-//            if (x1 == x2) {
-//                setX0(x1);
-//                setY0((Math.abs(y1 - y2) / 2) + y1 > y2 ? y1 : y2);
-//            }
-//            if (y1 == y2) {
-//                //  setR1(Math.abs(x1 - x2));
-//                setX0((Math.abs(x1 - x2) / 2) + x1 > x2 ? x1 : x2);
-//                setY0(y1);
-//            }
-//        } else {
-            setX0((getX() + getX1()) / 2);
-            setY0((getY() + getY1()) / 2);
+    public void OnCircle() throws InterruptedException {
+            double cosA = Math.cos(getA()), sinA = Math.sin(getA());
 
-            R1x = ((getX() > getX1()) ? getX() - x0 : getX1() - x0);
-            R1y = ((getY() > getY1()) ? getY() - y0 : getY1() - y0);
+            setX((this.dx * cosA - this.dy * sinA + getX0()));
+            setX1((this.dx1 * cosA - this.dy1 * sinA + getX0()));
 
-            double a = Math.toRadians(30);
-            double cosA = Math.cos(a), sinA = Math.sin(a);
-
-            setX((int)(R1x * cosA + R1y * sinA + x0));
-            setY((int)(R1y * cosA - R1x * sinA + y0));
-
+            setY((this.dx * sinA + this.dy * cosA + getY0()));
+            setY1((this.dx1 * sinA + this.dy1 * cosA + getY0()));
+            setA(getA() + 0.01);
     }
 
-    public int getR1x() {
-        return R1x;
+
+    public void setDx1(double dx1) {
+        this.dx1 = dx1;
     }
 
-    public void setR1x(int r1) {
-        R1x = r1;
+    public void setDy(double dy) {
+        this.dy = dy;
     }
 
-    public void setX1(int x1) {
+    public void setDy1(double dy1) {
+        this.dy1 = dy1;
+    }
+
+    public double getDy() {
+        return dy;
+    }
+
+    public double getDx1() {
+        return dx1;
+    }
+
+
+    public double getDy1() {
+        return dy1;
+    }
+
+    public double getDx() {
+        return dx;
+    }
+
+    public void setDx(double r1) {
+        dx = r1;
+    }
+
+    public void setX1(double x1) {
         this.x1 = x1;
     }
 
-    public void setY1(int y1) {
+    public void setY1(double y1) {
         this.y1 = y1;
     }
 
-    public int getX1() {
+    public double getX1() {
         return x1;
     }
 
-    public int getY1() {
+    public double getY1() {
         return y1;
     }
 
-    public int getX0() {
+    public double getX0() {
         return x0;
     }
 
-    public void setX0(int x0) {
+    public void setX0(double x0) {
         this.x0 = x0;
     }
 
-    public int getY0() {
+    public double getY0() {
         return y0;
     }
 
-    public void setY0(int y0) {
+    public void setY0(double y0) {
         this.y0 = y0;
     }
 }

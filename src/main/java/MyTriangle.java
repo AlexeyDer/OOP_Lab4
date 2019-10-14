@@ -3,7 +3,7 @@ public class MyTriangle extends MyLine {
     private double x2, y2;
     private boolean bx = true, by = true;
     private double dx2, dy2;
-    private double a = Math.toRadians(0.1);
+  //  private double a = Math.toRadians(0.1);
   //  private int count_x, count_y;
 
     protected MyTriangle(int x, int y, int x1, int y1, int x2, int y2) {
@@ -26,9 +26,9 @@ public class MyTriangle extends MyLine {
     }
 
 
-    public void OnCircle() throws InterruptedException {
 
-        double cosA = Math.cos(a), sinA = Math.sin(a);
+    public void OnCircle() throws InterruptedException {
+        double cosA = Math.cos(getA()), sinA = Math.sin(getA());
 
         setX((getDx() * cosA + getDy() * sinA + getX0()));
         setX1((getDx1() * cosA + getDy1() * sinA + getX0()));
@@ -37,7 +37,7 @@ public class MyTriangle extends MyLine {
         setY((getDy() * cosA - getDx() * sinA + getY0()));
         setY1((getDy1() * cosA - getDx1() * sinA + getY0()));
         setY2((getDy2() * cosA - getDx2() * sinA + getY0()));
-        a += Math.toRadians(1);
+        setA(getA() + 0.01);
 
     }
 
@@ -145,10 +145,7 @@ public class MyTriangle extends MyLine {
             setY1(getY1() - 1);
             setY2(getY2() - 1);
         }
-
-
     }
-
 
 
     public double getDx2() {
@@ -167,13 +164,25 @@ public class MyTriangle extends MyLine {
         this.dy2 = dy2;
     }
 
-    //    public int getR1x2() {
-//        return R1x2;
-//    }
-//
-//    public int getR1y2() {
-//        return R1y2;
-//    }
+    @Override
+    public void setX0(double x0) {
+        this.x0 = x0;
+    }
+
+    @Override
+    public void setY0(double y0) {
+        this.y0 = y0;
+    }
+
+    @Override
+    public double getX0() {
+        return x0;
+    }
+
+    @Override
+    public double getY0() {
+        return y0;
+    }
 
 
     public double getX2() {

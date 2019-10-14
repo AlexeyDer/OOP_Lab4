@@ -13,6 +13,9 @@ public class MyPanel extends JPanel{
 	boolean bc = true;
 	private Color c[];
 
+	private int R1x, R1y;
+	private int R1x1, R1y1;
+
 	
 	public MyPanel(tPoint[] m, MyLine[] line, MyTriangle[] triangles, int n, Color c[]) {
 		this.point = m;
@@ -31,20 +34,28 @@ public class MyPanel extends JPanel{
 		g2d.setStroke(new BasicStroke(5));
 		setBackground(Color.black);
 
+
 			for (int i = 0; i < n; i++) {
 					g2d.setColor(c[i]);
-					
-				//g2d.drawLine(point[i].getX(), point[i].getY(), point[i].getX(), point[i].getY());
-				g2d.drawLine(line[i].getX(), line[i].getY(), line[i].getX1(), line[i].getY1());
-//                g2d.drawLine(triangles[i].getX(), triangles[i].getY(), triangles[i].getX1(), triangles[i].getY1());
-//                g2d.drawLine(triangles[i].getX1(), triangles[i].getY1(), triangles[i].getX2(), triangles[i].getY2());
-//                g2d.drawPolygon(new int[] {triangles[i].getX(), triangles[i].getX1(), triangles[i].getX2()},
-//                        new int[] {triangles[i].getY(), triangles[i].getY1(), triangles[i].getY2()}, 3);
-
+					drawPoints(g2d, point, i);
+			 		drawLines(g2d, line, i);
+					drawTriangle(g2d, triangles, i);
 			}		
 			bc = false;
 	}
-	
-	
+
+	private static void drawPoints(Graphics2D g2d, tPoint[] point, int i) {
+		g2d.drawLine((int)point[i].getX(), (int)point[i].getY(),(int) point[i].getX(), (int)point[i].getY());
+	}
+
+	private static void drawLines(Graphics2D g2d, MyLine[] line, int i) {
+		g2d.drawLine((int)line[i].getX(),(int) line[i].getY(),(int) line[i].getX1(), (int)line[i].getY1());
+	}
+
+	private static void drawTriangle(Graphics2D g2d, MyTriangle[] triangles, int i){
+		g2d.drawPolygon(new int[] {(int)triangles[i].getX(), (int)triangles[i].getX1(), (int)triangles[i].getX2()},
+				new int[] {(int)triangles[i].getY(),(int) triangles[i].getY1(),(int) triangles[i].getY2()}, 3);
+	}
+
 	
 }

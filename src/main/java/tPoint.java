@@ -1,22 +1,32 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class tPoint {
 	private final int window_w = 1300, window_h = 750;
-	private int x, y;
+	private double x, y;
 	private boolean bx = true, by = true;
 	private static Random random = new Random();
+	private double a = Math.toRadians(0.1);
 
 	private int count_x;
 	private int count_y;
 
-	protected tPoint(int x, int y) {
+	protected tPoint(double x, double y) {
 		setX(x);
 		setY(y);
 		this.count_x = random.nextInt(2);
 		this.count_y = random.nextInt(2);
 	}
 
-    public void setCount_x(int count_x) {
+	public double getA() {
+		return a;
+	}
+
+	public void setA(double a) {
+		this.a = a;
+	}
+
+	public void setCount_x(int count_x) {
         this.count_x = count_x;
     }
 
@@ -42,19 +52,19 @@ public class tPoint {
 
 
 
-    public void setX(int x) {
+    public void setX(double x) {
 		this.x = x;
 	}
 
-	public void setY(int y) {
+	public void setY(double y) {
 		this.y = y;
 	}
 
-	public int getX() {
+	public double getX() {
 		return x;
 	}
 
-	public int getY() {
+	public double getY() {
 		return y;
 	}
 
@@ -131,7 +141,7 @@ public class tPoint {
 
 	}
 
-	public static void main(String args[]) {
+	public static void main(String args[]) throws InterruptedException {
 		final int window_w = 1300, window_h = 750;
 		final int n = 50;
 		int x, y, x1, y1, x2, y2;
@@ -140,16 +150,47 @@ public class tPoint {
 		MyLine[] line = new MyLine[n];
 		MyTriangle[] triangles = new MyTriangle[n];
 
+
+//
+//		System.out.println("\tMenu");
+//		System.out.println("1. Points");
+//		System.out.println("2. Lines");
+//		System.out.println("3. Triangles");
+//		System.out.println("Input number: ");
+//
+//		Scanner scanner = new Scanner(System.in);
+//		int c = scanner.nextInt();
+//
+//		switch (c){
+//			case 1:
+//				System.out.println("---------------------");
+//				System.out.println("Points: ");
+//				System.out.println("1. PramOX: ");
+//				System.out.println("2. Haot ");
+//				c = scanner.nextInt();
+//
+//				if (c == 1) {
+//					x = random.nextInt(window_w - 100);
+//					y = random.nextInt(window_h - 100);
+//					for (int i = 0; i < n; i++)
+//						point[i] = new tPoint(x, y);
+//				}
+//
+//				break;
+//		}
+
+
+
 		for (int i = 0; i < n; i++) {
-			x = random.nextInt(window_w - 100);
+			x = random.nextInt(window_w - 200);
 			y = random.nextInt(window_h - 100);
             x1 = x + 100;
-            y1 = y + 75;
-            x2 = x - 20;
-            y2 = y + 100;
-		//	point[i] = new tPoint(x, y);
+            y1 = random.nextInt(window_h);
+            x2 = random.nextInt(window_w);
+            y2 = random.nextInt(window_w);
+			point[i] = new tPoint(x, y);
 			line[i] = new MyLine(x, y, x1, y);
-//			triangles[i] = new MyTriangle(x, y, x1, y1, x2, y2);
+			triangles[i] = new MyTriangle(x, y, x + 100, y + 75, x - 20, y + 100);
 
 		}
 

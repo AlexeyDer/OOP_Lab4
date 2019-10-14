@@ -13,7 +13,7 @@ public class Window extends JFrame {
 
 	JFrame frame;
 
-	public Window(int window_w, int window_h, tPoint[] point, MyLine[] line, MyTriangle[] triangles, int n) {
+	public Window(int window_w, int window_h, tPoint[] point, MyLine[] line, MyTriangle[] triangles, int n) throws InterruptedException {
 		this.point = point;
 		this.line = line;
 		this.triangles = triangles;
@@ -35,7 +35,7 @@ public class Window extends JFrame {
 		MoveIt();
 	}
 
-	private void MoveIt() {
+	private void MoveIt() throws InterruptedException {
 //        Scanner scanner = new Scanner(System.in);
 //        int c = scanner.nextInt();
 //
@@ -44,15 +44,27 @@ public class Window extends JFrame {
 //        System.out.println("2. Lines");
 
 		while (true) {
-
 			for (int i = 0; i < n; i++)
-			//	point[i].MovePramX();
-				line[i].OnCircle();
-//			    triangles[i].MoveHaot();
+					point[i].MoveHaot();
 			try {
 				Thread.sleep(10);
 			} catch (Exception exc) {
 			}
+
+			for (int i = 0; i < n; i++)
+				line[i].OnCircle();
+			try {
+				Thread.sleep(10);
+			} catch (Exception exc) {
+			}
+
+			for (int i = 0; i < n; i++)
+				triangles[i].OnCircle();
+			try {
+				Thread.sleep(10);
+			} catch (Exception exc) {
+			}
+
 			frame.repaint();
 
 		}
