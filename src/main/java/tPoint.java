@@ -1,9 +1,8 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class tPoint {
+public class tPoint extends Figure {
 	private final int window_w = 1300, window_h = 750;
-	private double x, y;
 	private boolean bx = true, by = true;
 	private static Random random = new Random();
 	private double a = Math.toRadians(0.1);
@@ -11,9 +10,14 @@ public class tPoint {
 	private int count_x;
 	private int count_y;
 
+    protected tPoint() {
+    	super(-1, -1);
+        this.count_x = -1;
+        this.count_y = -1;
+    }
+
 	protected tPoint(double x, double y) {
-		setX(x);
-		setY(y);
+		super(x, y);
 		this.count_x = random.nextInt(2);
 		this.count_y = random.nextInt(2);
 	}
@@ -51,30 +55,13 @@ public class tPoint {
     }
 
 
-
-    public void setX(double x) {
-		this.x = x;
-	}
-
-	public void setY(double y) {
-		this.y = y;
-	}
-
-	public double getX() {
-		return x;
-	}
-
-	public double getY() {
-		return y;
-	}
-
 	public void MovePramX() {
-		if (bx && x < window_w - 15)
-			++this.x;
+		if (bx && getX() < window_w - 15)
+			setX(getX() + 1);
 		else {
 			bx = false;
-			if (!bx && x > 1)
-				--this.x;
+			if (!bx && getX() > 1)
+				setX(getX() - 1);
 			else
 				bx = true;
 		}
@@ -89,8 +76,8 @@ public class tPoint {
 
 	public void MoveHaot() {
 
-		if (count_x == 0 && bx && x < window_w - 15)
-			++this.x;
+		if (count_x == 0 && bx && getX() < window_w - 15)
+			setX(getX() + 1);
 		else {
 			if (bx) {
 				count_x = moveCords(count_x);
@@ -98,8 +85,8 @@ public class tPoint {
 			bx = false;
 			count_x = moveCords(count_x);
 
-			if (count_x == 1 && !bx && x > 1)
-				--this.x;
+			if (count_x == 1 && !bx && getX() > 1)
+				setX(getX() - 1);
 			else {
 				if (!bx) {
 					count_x = moveCords(count_x);
@@ -110,8 +97,8 @@ public class tPoint {
 		
 		
 
-		if (count_y == 0 && by && y < window_h - 40)
-			++this.y;
+		if (count_y == 0 && by && getY() < window_h - 40)
+			setY(getY() + 1);
 		else {
 			if (by) {
 				count_y = moveCords(count_y);
@@ -119,8 +106,8 @@ public class tPoint {
 			by = false;
 			count_y = moveCords(count_y);
 
-			if (count_y == 1 && !by && y > 1)
-				--this.y;
+			if (count_y == 1 && !by && getY() > 1)
+				setY(getY() - 1);
 			else {
 				if (!by) {
 					count_y = moveCords(count_y);
@@ -130,14 +117,14 @@ public class tPoint {
 		}
 
 		if (count_x == 0)
-			++this.x;
+			setX(getX() + 1);
 		else
-			--this.x;
+			setX(getX() - 1);
 
 		if (count_y == 0)
-			++this.y;
+			setY(getY() + 1);
 		else
-			--this.y;
+			setY(getY() - 1);
 
 	}
 
@@ -149,41 +136,18 @@ public class tPoint {
 		tPoint[] point = new tPoint[n];
 		MyLine[] line = new MyLine[n];
 		MyTriangle[] triangles = new MyTriangle[n];
+		MyRectangle[] rectangles = new MyRectangle[n];
+		MyRomb[] rombs = new MyRomb[n];
+		MyElips[] elips = new MyElips[n];
+		MyCircle[] circles = new MyCircle[n];
 
 
-//
-//		System.out.println("\tMenu");
-//		System.out.println("1. Points");
-//		System.out.println("2. Lines");
-//		System.out.println("3. Triangles");
-//		System.out.println("Input number: ");
-//
-//		Scanner scanner = new Scanner(System.in);
-//		int c = scanner.nextInt();
-//
-//		switch (c){
-//			case 1:
-//				System.out.println("---------------------");
-//				System.out.println("Points: ");
-//				System.out.println("1. PramOX: ");
-//				System.out.println("2. Haot ");
-//				c = scanner.nextInt();
-//
-//				if (c == 1) {
-//					x = random.nextInt(window_w - 100);
-//					y = random.nextInt(window_h - 100);
-//					for (int i = 0; i < n; i++)
-//						point[i] = new tPoint(x, y);
-//				}
-//
-//				break;
-//		}
 
 
 
 		for (int i = 0; i < n; i++) {
 			x = random.nextInt(window_w - 200);
-			y = random.nextInt(window_h - 100);
+			y = random.nextInt(window_h - 150);
             x1 = x + 100;
             y1 = random.nextInt(window_h);
             x2 = random.nextInt(window_w);
@@ -191,9 +155,19 @@ public class tPoint {
 			point[i] = new tPoint(x, y);
 			line[i] = new MyLine(x, y, x1, y);
 			triangles[i] = new MyTriangle(x, y, x + 100, y + 75, x - 20, y + 100);
+			rectangles[i] = new MyRectangle(x, y, x + 100, y, x + 100, y + 50, x, y + 50);
+			rombs[i] = new MyRomb(x, y, x + 20, y + 50, x , y + 100, x - 20, y + 50);
+			circles[i] = new MyCircle(x, y, 100, 100);
+			elips[i] = new MyElips(x, y, 100, 50);
+
 
 		}
+			tPoint[] figures = new tPoint[7];
+//
+//        figures[0] = point[n];
+//        figures[1] = line[n];
+//        figures[2] = triangles[n];
 
-		new Window(window_w, window_h, point, line, triangles, n);
+		new Window(window_w, window_h, point, line, triangles, rectangles, rombs, circles, elips, figures, n);
 	}
 }

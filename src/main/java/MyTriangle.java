@@ -6,7 +6,13 @@ public class MyTriangle extends MyLine {
   //  private double a = Math.toRadians(0.1);
   //  private int count_x, count_y;
 
-    protected MyTriangle(int x, int y, int x1, int y1, int x2, int y2) {
+    protected MyTriangle() {
+        super(-1, -1, -1, -1);
+        this.x2 = -1;
+        this.y2 = -1;
+    }
+
+    protected MyTriangle(double x, double y, double x1, double y1, double x2, double y2) {
         super(x, y, x1, y1);
         this.x2 = x2;
         this.y2 = y2;
@@ -26,7 +32,7 @@ public class MyTriangle extends MyLine {
     }
 
 
-
+    @Override
     public void OnCircle() throws InterruptedException {
         double cosA = Math.cos(getA()), sinA = Math.sin(getA());
 
@@ -41,6 +47,7 @@ public class MyTriangle extends MyLine {
 
     }
 
+    @Override
     public void MovePramX() {
         if (bx && (getX() < getWindow_w() - 15 && getX1() <  getWindow_w() - 15 && getX2() <  getWindow_w() - 15) ) {
             setX(getX() + 1);

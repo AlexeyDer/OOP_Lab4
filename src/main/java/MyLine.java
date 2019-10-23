@@ -9,6 +9,12 @@ public class MyLine extends tPoint {
 
     private boolean bx = true, by = true;
 
+    protected MyLine(){
+        super(-1, -1);
+        this.x1 = -1;
+        this.y1 = -1;
+    }
+
     protected MyLine(double x, double y, double x1, double y1){
         super(x, y);
         this.x1 = x1;
@@ -22,11 +28,10 @@ public class MyLine extends tPoint {
 
         this.dx1 = getX1() - getX0();
         this.dy1 = getY1() - getY0();
-
     }
 
 
-
+    @Override
     public void MovePramX() {
         if (bx && (getX() < getWindow_w() - 15 && getX1() <  getWindow_w() - 15)) {
             setX(getX() + 1);
@@ -51,7 +56,7 @@ public class MyLine extends tPoint {
 
             setY((this.dx * sinA + this.dy * cosA + getY0()));
             setY1((this.dx1 * sinA + this.dy1 * cosA + getY0()));
-            setA(getA() + 0.01);
+                setA(getA() + 0.01);
     }
 
 

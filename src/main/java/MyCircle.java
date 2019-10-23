@@ -1,7 +1,7 @@
 public class MyCircle extends tPoint {
     private int width, len;
 
-    protected MyCircle(int x, int y, int width, int len) {
+    protected MyCircle(double x, double y, int width, int len) {
         super(x, y);
         setLen((len));
         setWidth(width);
