@@ -35,8 +35,6 @@ public class Window extends JFrame {
             c[i] = new Color(r.nextInt(256), r.nextInt(256), r.nextInt(256), r.nextInt(256));
         }
 
-
-
         frame = new JFrame("tPoint");
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.setSize(window_w, window_h);
@@ -55,9 +53,9 @@ public class Window extends JFrame {
 //        System.out.println("2. Lines");
 
 		while (true) {
-
-//            for (int i = 0; i < n; i++)
-//                figures[i].MoveHaot();
+//
+//            for (int i = 0; i < 3; i++)
+//                figures[i].MovePramX();
 //            try {
 //                Thread.sleep(10);
 //            } catch (Exception exc) {
@@ -78,7 +76,7 @@ public class Window extends JFrame {
 			}
 
 			for (int i = 0; i < n; i++)
-				triangles[i].OnCircle();
+				triangles[i].MoveHaot();
 			try {
 				Thread.sleep(10);
 			} catch (Exception exc) {

@@ -12,6 +12,25 @@ public class MyTriangle extends MyLine {
         this.y2 = -1;
     }
 
+    protected MyTriangle(int x, int y, int x1, int y1, int x2, int y2) {
+        super(x, y, x1, y1);
+        this.x2 =(double) x2;
+        this.y2 =(double) y2;
+
+        setX0((getX() + getX1() + getX2()) / 3);
+        setY0((getY() + getY1() + getY2()) / 3);
+
+        setDx(getX() - getX0());
+        setDy(getY() - getY0());
+
+        setDx1(getX1() - getX0());
+        setDy1( getY1() - getY0());
+
+        setDx2(getX2() - getX0());
+        setDy2(getY2() - getY0());
+
+    }
+
     protected MyTriangle(double x, double y, double x1, double y1, double x2, double y2) {
         super(x, y, x1, y1);
         this.x2 = x2;
@@ -33,7 +52,7 @@ public class MyTriangle extends MyLine {
 
 
     @Override
-    public void OnCircle() throws InterruptedException {
+    public void OnCircle()  {
         double cosA = Math.cos(getA()), sinA = Math.sin(getA());
 
         setX((getDx() * cosA + getDy() * sinA + getX0()));

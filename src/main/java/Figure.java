@@ -6,8 +6,14 @@ public abstract class Figure{
          this.y = y;
     }
 
+    Figure(int x, int y) {
+        this.x = (double)x;
+        this.y = (double)y;
+    }
+
     public abstract void MoveHaot();
     public abstract void MovePramX();
+    public abstract void OnCircle();
 
 
     public double getX() {
@@ -26,4 +32,4 @@ public abstract class Figure{
         this.x = x;
     }
 
- }
+}

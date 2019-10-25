@@ -10,6 +10,27 @@ public class MyRectangle extends MyTriangle {
         setY3(-1);
     }
 
+    MyRectangle(int x, int y, int x1, int y1, int x2, int y2, int x3, int y3) {
+        super(x, y , x1, y1, x2, y2);
+        setX3((double)x3);
+        setY3((double)y3);
+
+        setX0((getX() + getX1()) / 2);
+        setY0((getY() + getY2()) / 2);
+
+        setDx(getX() - getX0());    ///
+        setDy(getY() - getY0());
+
+        setDx1(getX1() - getX0());
+        setDy1( getY1() - getY0());
+
+        setDx2(getX2() - getX0());
+        setDy2(getY2() - getY0());
+
+        setDx3(getX3() - getX0());
+        setDy3(getY3() - getY0());
+    }
+
 
     MyRectangle(double x, double y, double x1, double y1, double x2, double y2, double x3, double y3) {
         super(x, y , x1, y1, x2, y2);
@@ -57,7 +78,7 @@ public class MyRectangle extends MyTriangle {
     }
 
     @Override
-    public void OnCircle() throws InterruptedException {
+    public void OnCircle()  {
         double cosA = Math.cos(getA()), sinA = Math.sin(getA());
 
         setX((getDx() * cosA + getDy() * sinA + getX0()));

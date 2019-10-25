@@ -15,6 +15,21 @@ public class MyLine extends tPoint {
         this.y1 = -1;
     }
 
+    protected MyLine(int x, int y, int x1, int y1){
+        super(x, y);
+        this.x1 =(double) x1;
+        this.y1 =(double) y1;
+
+        setX0((getX() + getX1()) / 2);
+        setY0((getY() + getY1()) / 2);
+
+        this.dx = getX() - getX0();
+        this.dy = getY() - getY0();
+
+        this.dx1 = getX1() - getX0();
+        this.dy1 = getY1() - getY0();
+    }
+
     protected MyLine(double x, double y, double x1, double y1){
         super(x, y);
         this.x1 = x1;
@@ -48,7 +63,7 @@ public class MyLine extends tPoint {
         }
     }
 
-    public void OnCircle() throws InterruptedException {
+    public void OnCircle()  {
             double cosA = Math.cos(getA()), sinA = Math.sin(getA());
 
             setX((this.dx * cosA - this.dy * sinA + getX0()));

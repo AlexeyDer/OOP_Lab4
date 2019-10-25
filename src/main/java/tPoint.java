@@ -16,11 +16,19 @@ public class tPoint extends Figure {
         this.count_y = -1;
     }
 
+	protected tPoint(int x, int y) {
+		super(x, y);
+		this.count_x = random.nextInt(2);
+		this.count_y = random.nextInt(2);
+	}
+
 	protected tPoint(double x, double y) {
 		super(x, y);
 		this.count_x = random.nextInt(2);
 		this.count_y = random.nextInt(2);
 	}
+
+
 
 	public double getA() {
 		return a;
@@ -66,6 +74,12 @@ public class tPoint extends Figure {
 				bx = true;
 		}
 	}
+
+	@Override
+	public void OnCircle() {
+		return;
+	}
+
 
 	public int moveCords(int a) {
 		if (a == 0)
@@ -143,8 +157,6 @@ public class tPoint extends Figure {
 
 
 
-
-
 		for (int i = 0; i < n; i++) {
 			x = random.nextInt(window_w - 200);
 			y = random.nextInt(window_h - 150);
@@ -167,6 +179,10 @@ public class tPoint extends Figure {
 //        figures[0] = point[n];
 //        figures[1] = line[n];
 //        figures[2] = triangles[n];
+//       	figures[3] = rectangles[n];
+//       	figures[4] = rombs[n];
+//       	figures[5] = circles[n];
+//       	figures[6] = elips[n];
 
 		new Window(window_w, window_h, point, line, triangles, rectangles, rombs, circles, elips, figures, n);
 	}
